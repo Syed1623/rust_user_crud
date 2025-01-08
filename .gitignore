@@ -62,3 +62,4 @@ build.rs.out
 
 # Optional: dependencies directory if you use cargo vendor
 /vendor/
+.env

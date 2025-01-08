@@ -19,9 +19,9 @@ impl UserRepository {
         users::table.load::<User>(&mut conn)
     }
 
-    pub fn get_user_by_id(pool: &Pool, user_id: i32) -> QueryResult<User> {
+    pub fn get_user_by_id(pool: &Pool, user_id: i32) -> QueryResult<Option<User>> {
         let mut conn = pool.get().expect("Couldn't get db connection from pool");
-        users::table.find(user_id).get_result(&mut conn)
+        users::table.find(user_id).get_result(&mut conn).optional()
     }
 
     pub fn update_user(pool: &Pool, user_id: i32, updated_user: NewUser) -> QueryResult<User> {

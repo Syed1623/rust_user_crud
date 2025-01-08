@@ -1,5 +1,7 @@
 
+use rocket::response::status::Custom;
 use rocket::{get, post, put, delete, http::Status, serde::json::Json, State};
+use crate::models::Warning;
 use crate::repositories::user_repository::UserRepository;
 use crate::models::user::{NewUser, User};
 use crate::db::Pool;
@@ -12,10 +14,12 @@ pub fn get_users(pool: &State<Pool>) -> Result<Json<Vec<User>>, Status> {
 }
 
 #[get("/users/<id>")]
-pub fn get_user_by_id(pool: &State<Pool>, id: i32) -> Result<Json<User>, Status> {
-    UserRepository::get_user_by_id(pool.inner(), id)
-        .map(Json)
-        .map_err(|_| Status::NotFound)
+pub fn get_user_by_id(pool: &State<Pool>, id: i32) -> Result<Json<User>, Custom<Json<Warning>>> {
+    match UserRepository::get_user_by_id(pool.inner(), id) {
+       Ok(Some(user))=>Ok(Json(user)),
+    Ok(None)=>Err(Custom(Status::NotFound,Json(Warning { message: "User not found".to_string() }))),
+    Err(_)=>Err(Custom(Status::InternalServerError, Json(Warning { message: "Internal server error".to_string() }))),
+    }
 }
 
 #[post("/users", format = "json", data = "<new_user>")]

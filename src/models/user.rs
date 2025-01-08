@@ -29,3 +29,8 @@ where
 {
     serializer.serialize_str(&date.format("%Y-%m-%d %H:%M:%S").to_string())
 }
+#[derive(serde::Serialize)]
+pub struct Warning {
+    pub message: String,
+
+}
