@@ -1,0 +1,64 @@
+# Rust build directory
+/target/
+
+# Rust backup files
+**/*.rs.bk
+
+# Remove Cargo.lock for libraries
+# Keep it for binary projects
+# Cargo.lock
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Debug files
+*.pdb
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Generated documentation
+/doc/
+
+# Profiling and benchmarking
+/flamegraph.svg
+perf.*
+*.folded
+
+# Coverage reports
+/coverage/
+*.profraw
+*.profdata
+
+# Logging
+*.log
+logs/
+
+# Build scripts output
+build.rs.out
+
+# Cross compilation artifacts
+/cross/
+
+# Backup files
+*~
+*.bak
+
+# Optional: dependencies directory if you use cargo vendor
+/vendor/

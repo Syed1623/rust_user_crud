@@ -1,0 +1,19 @@
+
+[package]
+name = "rust-api-crud"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rocket = { version = "0.5.0-rc.3", features = ["json"] }
+# Only if you want to use Rocket's template engine (not required for a basic API)
+# rocket_dyn_templates = "0.1.0-rc.3" 
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+diesel = { version = "2.1.0", features = ["postgres", "r2d2", "chrono"] }
+diesel_migrations = "2.1.0"
+dotenvy = "0.15.0"
+tokio = { version = "1.28.0", features = ["rt-multi-thread", "macros"] }
+chrono = { version = "0.4", features = ["serde"] }
+        
